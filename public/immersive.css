@@ -1,0 +1,451 @@
+/* =====================================================================
+   Identidade imersiva global — Barbearia Modelo (11/11)
+   Penumbra, bronze e dourado envelhecido, vidro sutil, luz que segue o mouse.
+   Carregado DEPOIS de style.css. Vale para o site, login, painel do dono, área do barbeiro e janelas.
+   Efeitos pesados (desfoque de vidro, luz dinâmica, inclinação) só em telas grandes com mouse.
+   ===================================================================== */
+:root{
+  --im-bg:#0b0c0e;--im-bg2:#111214;--im-ink:#ece5d8;--im-ink2:#b9b1a4;--im-ink3:#8e877c;
+  --im-gold:#c9a365;--im-gold-l:#e7cf96;--im-gold-d:#8b6b3a;--im-line:rgba(201,163,101,.16);--im-line2:rgba(201,163,101,.34);
+  --im-red:#d0574b;--im-green:#7cc08d;--im-amber:#e2b25a;--im-blue:#93acec;
+  --im-glass:linear-gradient(155deg,rgba(42,38,33,.78),rgba(19,18,17,.84));
+  --im-glass-2:linear-gradient(155deg,rgba(52,46,39,.8),rgba(24,22,20,.86));
+  --im-cta:linear-gradient(180deg,#ecd59a 0%,#d2ad66 48%,#b18745 100%);
+  --mx:50%;--my:30%;--gx:0;--gy:0;
+  /* tokens antigos redirecionados para o tema escuro */
+  --navy:#ece5d8;--cream:#0b0c0e;--muted:#a39b8f;--line:rgba(201,163,101,.16);--blue:#d2ad66;--red:#d0574b;
+  color-scheme:dark;
+}
+html{background:var(--im-bg)}
+body{background:transparent;color:var(--im-ink)}
+/* fundo vivo global: penumbra + textura + luz que acompanha o cursor */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(520px circle at var(--mx) var(--my),rgba(214,170,98,.075),transparent 62%),
+    radial-gradient(60% 70% at 0% 45%,rgba(120,26,18,.22),transparent 70%),
+    radial-gradient(50% 60% at 100% 25%,rgba(40,84,90,.16),transparent 72%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .75 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    linear-gradient(180deg,#0d0e10,#0a0b0c)}
+::selection{background:rgba(201,163,101,.35);color:#fff}
+:focus-visible{outline:2px solid var(--im-gold-l);outline-offset:3px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* --- gerado: neutraliza cores claras/escuras antigas do style.css (texto escuro → claro; fundos claros → vidro) --- */
+.form-error,
+.quiet-button,
+.performance-card>strong,
+.record-total,
+.shortcut,
+.planner-top h2,
+.day-navigation h3,
+.calendar-icon,
+.planner-date-tools input,.planner-date-tools select,
+.calendar-professional>span,
+.calendar-event,
+.planner-editor h3,.clients-panel h3,
+.planner-editor form>label,.planner-form-grid>label,.closure-columns>div>label,
+.planner-editor input,.planner-editor select,.planner-editor textarea,.client-search-label input,
+.planner-service-options legend,
+.closure-info>strong,
+.closure-total,
+.calendar-list-item,
+.workspace-user>span,
+.owner-access-card .access-role,
+.rate-split strong{color:var(--im-ink)}
+.service,
+.story,
+.feedback,
+.review-person>span,
+.icon-button,
+input,select,
+.service-options label:has(:checked),
+#dashboard,
+.dash-top,
+.owner-avatar,
+.stat-card,
+.panel,
+.panel-head button,
+th,
+.notice,
+.stock-controls button,
+.quiet-button,
+.priority-tile,
+.priority-tile.urgent,
+.priority-tile.attention,
+.priority-tile.normal,
+.note-card,
+.note-resolution,
+.note-card.resolved,
+.professional-mark,
+.access-card,
+textarea,
+.record-services label,
+.staff-area,
+.staff-header,
+.shortcut,
+.staff-area tr,
+.staff-area .table-actions .table-action,
+.planner-panel,.planner-editor,
+.calendar-icon,
+.calendar-icon:hover,
+.planner-date-tools input,.planner-date-tools select,
+.planner-own-label,
+.calendar-column-heads,
+.calendar-professional>span,
+.calendar-times,
+.calendar-slot:not(:disabled):hover,
+.calendar-event,
+.calendar-event.completed,
+.calendar-event.pending,
+.event-meta>span,
+.completed .event-meta>span,
+.pending .event-meta>span,
+.blocked .event-meta>span,
+.planner-editor input,.planner-editor select,.planner-editor textarea,.client-search-label input,
+.planner-editor input:read-only,
+.planner-service-options label,
+.booking-inline-summary,
+.planner-message.error,
+.planner-info,
+.planner-inline-action,
+.closure-receipt,
+.calendar-list-item,
+.calendar-list-item.blocked,
+.client-avatar,
+.workspace-user>span,
+#action-form .qty-stepper button,
+.daily-control tfoot td{background:rgba(255,255,255,.035)}
+.steps article,
+input,select,
+.stat-card,
+.panel,
+td,
+.notice,
+.quiet-button,
+.priority-tile,
+.priority-tile.urgent,
+.priority-tile.attention,
+.priority-tile.normal,
+.performance-card,
+.performance-details,
+.access-card,
+.daily-chart,
+.audit-entry,
+textarea,
+.record-services label,
+.record-details,
+.record-total,
+.staff-header,
+.shortcut,
+.more-services,
+.staff-area tr,
+.staff-area .table-actions .table-action,
+.planner-panel,.planner-editor,
+.calendar-icon,
+.calendar-icon:hover,
+.planner-date-tools input,.planner-date-tools select,
+.calendar-scroll,
+.calendar-column-heads,
+.calendar-clock-head,
+.calendar-professional,
+.calendar-times,
+.calendar-times>span,
+.calendar-lane,
+.planner-editor input,.planner-editor select,.planner-editor textarea,.client-search-label input,
+.planner-service-options label,
+.planner-info,
+.closure-service,
+.detail-secondary-actions,
+.planner-inline-action,
+.client-row,
+.owner-access-card,
+button.round-arrow:hover,
+.daily-control tfoot td{border-color:var(--im-line)}
+/* ---------- tipografia ---------- */
+h1,h2,h3,h4{color:var(--im-ink)}
+.eyebrow,#website .eyebrow,.dash-heading .eyebrow,.staff-welcome .eyebrow,.planner-top .eyebrow,.login-card .eyebrow,.booking-dialog .dialog-heading .eyebrow{color:var(--im-gold)!important;letter-spacing:.18em}
+#website h2 span,h2 span,.feedback h2 span,#website .feedback h2 span{background:linear-gradient(180deg,#f0dca6,#c9a365 60%,#9c7a43);-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent}
+#website .last-call h2 span{-webkit-text-fill-color:transparent}
+#website .section-heading>p,.section-heading>p,.dash-heading p:not(.eyebrow),.staff-welcome p:not(.eyebrow),.planner-top p:not(.eyebrow),.panel-head p,.data-note,.privacy-note,td small,.empty-state,.planner-muted,.calendar-footnote{color:var(--im-ink2)}
+.section-heading h2,.dash-heading h1,#dash-title,.planner-top h2,.staff-welcome h1,.dialog-heading h2{text-shadow:calc(var(--gx) * -2px) calc(3px - var(--gy) * 2px) 14px rgba(0,0,0,.65)}
+a{color:inherit}
+
+/* ---------- vidro: cartões e painéis ---------- */
+.panel,.stat-card,.priority-tile,.note-card,.performance-card,.access-card,.planner-panel,.planner-editor,.shortcut,
+#website .service,.team-grid article,.location-address,.location-social,.login-card,.calendar-list-item,.closure-service,
+.planner-inline-action,.record-details,.booking-summary,.success-details,.planner-info,.closure-receipt,.stock-switch,.rate-box{
+  background:radial-gradient(420px circle at var(--sx,50%) var(--sy,-20%),rgba(231,207,150,.075),transparent 48%),var(--im-glass);
+  border:1px solid var(--im-line);color:var(--im-ink);
+  box-shadow:inset 0 1px 0 rgba(255,236,200,.06),calc(var(--gx) * -8px) calc(14px - var(--gy) * 6px) 34px -16px rgba(0,0,0,.8)}
+@media (min-width:900px) and (hover:hover){
+  .panel,.stat-card,.login-card,.planner-panel,.planner-editor,#website .service,.team-grid article,.location-address,.location-social,.performance-card,.access-card{backdrop-filter:blur(10px) saturate(1.15);-webkit-backdrop-filter:blur(10px) saturate(1.15)}
+}
+.panel-head h2,.planner-editor h3,.clients-panel h3,.closure-info>strong,.empty-state strong,.planner-empty strong,.workspace-user strong{color:var(--im-ink)}
+.stat-card>span,.stat-card small,.priority-tile small,.note-meta,.note-card-bottom>span,.note-card p,.performance-card>small,.access-card p,.mix-row>span,.service-top,.calendar-professional small,.client-row p,.client-row small,.calendar-list-item small,.closure-service small,.planner-service-options small,.planner-editor header p,.planner-loading,.planner-empty,.closure-info,.calendar-status,.planner-editor form>label,.planner-form-grid>label,.closure-columns>div>label,.planner-service-options legend,.staff-welcome label,.calendar-legend,.calendar-legend small,.calendar-clock-head{color:var(--im-ink2)}
+.stat-card strong,.performance-card>strong{color:var(--im-ink)}
+.performance-card>strong,.record-total,.closure-total{color:var(--im-gold-l)!important}
+.performance-card>p{color:var(--im-amber)}
+/* cartão em destaque: dourado com texto escuro (alto contraste) */
+.stat-card.highlight{background:radial-gradient(420px circle at var(--sx,30%) var(--sy,0%),rgba(255,248,225,.35),transparent 50%),var(--im-cta);border-color:#e7cf96;color:#17120a;box-shadow:0 14px 40px -14px rgba(201,163,101,.45),inset 0 1px 0 rgba(255,255,255,.4)}
+.stat-card.highlight>span,.stat-card.highlight small,.stat-card.highlight strong{color:#1d160c!important}
+
+/* ---------- botões ---------- */
+.button,#website .button,.planner-top .button,.sale-top,.button.small{background:var(--im-cta);color:#17120a;border:1px solid #e7cf96;font-weight:700;letter-spacing:.01em;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),inset 0 -1px 0 rgba(0,0,0,.25),calc(var(--gx) * -6px) calc(8px - var(--gy) * 4px) 22px -8px rgba(0,0,0,.75),0 0 0 1px rgba(0,0,0,.35);
+  transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,filter .25s}
+.button:hover,#website .button:hover,.planner-top .button:hover,.sale-top:hover{background:var(--im-cta);filter:brightness(1.08) saturate(1.05);transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 14px 28px -10px rgba(201,163,101,.55),0 0 0 1px rgba(0,0,0,.35)}
+.button:active{transform:translateY(0);filter:brightness(.97)}
+.button.light,#website .button.light{background:var(--im-cta);color:#17120a}
+/* cabeçalho do site mantém o botão escovado com borda dourada (referência) */
+#website .h2a-cta{color:#ece4d6;font-weight:400;background:repeating-linear-gradient(90deg,#ffffff05 0 1px,#0000 1px 3px),linear-gradient(180deg,#34322d,#1b1a17);border:1.5px solid #a68a52}
+#website .h2a-cta:hover{filter:none}
+.quiet-button,.calendar-icon,.stock-controls button,.planner-date-tools input,.planner-date-tools select{background:rgba(255,255,255,.035);border:1px solid var(--im-line2);color:var(--im-ink);transition:border-color .2s,background .2s}
+.quiet-button:hover,.calendar-icon:hover{background:rgba(201,163,101,.1);border-color:var(--im-gold)}
+.table-action,.inline-link,#website .inline-link,.team-grid .inline-link,.login-card #owner-retry,.login-switch{color:var(--im-gold-l)}
+.table-action.danger{color:#ff9d92}
+.panel-head button{background:rgba(201,163,101,.12);color:var(--im-gold-l);border:1px solid var(--im-line)}
+.panel-head button:hover{background:rgba(201,163,101,.2)}
+.icon-button,#action-dialog .icon-button{background:rgba(255,255,255,.07);color:var(--im-ink);border:1px solid var(--im-line)}
+.staff-area .table-actions .table-action{background:rgba(201,163,101,.12);border:1px solid var(--im-line2);color:var(--im-gold-l)}
+
+/* ---------- formulários ---------- */
+input,select,textarea,.planner-editor input,.planner-editor select,.planner-editor textarea,.client-search-label input,.login-card input,
+#action-dialog input,#action-dialog select,#action-dialog textarea{background:#18171a;border:1px solid #3d372d;color:var(--im-ink);-webkit-text-fill-color:var(--im-ink)}
+input::placeholder,textarea::placeholder,#action-dialog input::placeholder,#action-dialog textarea::placeholder{color:#7f786d;-webkit-text-fill-color:#7f786d}
+input:focus,select:focus,textarea:focus,#action-dialog input:focus,#action-dialog select:focus,#action-dialog textarea:focus{border-color:var(--im-gold);outline:2px solid rgba(201,163,101,.3);outline-offset:0}
+select option,#action-dialog select option{background:#18171a;color:var(--im-ink)}
+.planner-editor input:read-only{background:#141316}
+#action-dialog input:disabled,#action-dialog input[disabled]{background:#141316;border-style:dashed;color:var(--im-ink);-webkit-text-fill-color:var(--im-ink)}
+input[type=checkbox],input[type=radio]{accent-color:var(--im-gold)}
+input[type=date],input[type=month],input[type=time]{color-scheme:dark}
+.service-options label,.planner-service-options label,.record-services label,#action-dialog .record-services label,#action-form .sale-item,#action-dialog .sale-item{background:rgba(255,255,255,.03);border:1px solid var(--im-line);color:var(--im-ink)}
+.service-options label:has(:checked),.planner-service-options label:has(:checked),.record-services label:has(:checked){background:rgba(201,163,101,.14);border-color:var(--im-gold)}
+.booking-inline-summary{background:rgba(201,163,101,.1);color:var(--im-gold-l)}
+.planner-own-label{background:rgba(201,163,101,.1);color:var(--im-gold-l)}
+
+/* ---------- janelas ---------- */
+dialog,.booking-dialog,#action-dialog{background:linear-gradient(160deg,#1d1b18,#111012);color:var(--im-ink);border:1px solid var(--im-line2);box-shadow:0 40px 120px rgba(0,0,0,.75),inset 0 1px 0 rgba(255,236,200,.06)}
+dialog::backdrop{background:rgba(6,6,7,.72);backdrop-filter:blur(6px)}
+#action-dialog h2,#action-dialog h3,#action-dialog h4,#action-dialog legend,#action-dialog strong{color:var(--im-ink)}
+#action-dialog .data-note,#action-dialog .privacy-note,#action-dialog small,#action-dialog #action-form .sale-item small{color:var(--im-ink2)}
+#action-dialog .sale-group,.sale-group{color:var(--im-gold)}
+#action-dialog .sale-total,#action-dialog .record-total,.sale-total{border-top-color:var(--im-line)}
+#action-dialog .sale-total strong{color:var(--im-gold-l)}
+.booking-summary span,.success-icon{color:var(--im-ink2)}
+.success-icon{color:var(--im-gold)}
+#lightbox{background:transparent;border:0;box-shadow:none}
+#toast{background:linear-gradient(160deg,#25221d,#141312);color:var(--im-ink);border:1px solid var(--im-line2);box-shadow:0 18px 40px rgba(0,0,0,.6)}
+
+/* ---------- tabelas e listas ---------- */
+th{background:rgba(255,255,255,.035);color:var(--im-ink3);letter-spacing:.06em}
+td{border-bottom:1px solid rgba(255,255,255,.06)}
+tr:hover td{background:rgba(201,163,101,.035)}
+.daily-control tfoot td{background:rgba(201,163,101,.09);border-top-color:var(--im-line2)}
+.mix-row,.client-row{border-color:rgba(255,255,255,.06)}
+.staff-area tr{background:var(--im-glass);border:1px solid var(--im-line)}
+.staff-area tr:hover td{background:none}
+
+/* ---------- estados e etiquetas ---------- */
+.badge{background:rgba(147,172,236,.14);color:#b9cbf6}
+.badge.completed,.priority-pill.normal{background:rgba(124,192,141,.14);color:#9fdcae}
+.badge.cancelled,.priority-pill.urgent{background:rgba(208,87,75,.16);color:#ffa79c}
+.badge.warning,.priority-pill.attention{background:rgba(226,178,90,.15);color:#f1c978}
+.priority-tile.urgent{border-color:rgba(208,87,75,.4);background:linear-gradient(155deg,rgba(208,87,75,.13),rgba(19,18,17,.84))}
+.priority-tile.attention{border-color:rgba(226,178,90,.4);background:linear-gradient(155deg,rgba(226,178,90,.12),rgba(19,18,17,.84))}
+.priority-tile.normal{border-color:rgba(124,192,141,.36);background:linear-gradient(155deg,rgba(124,192,141,.1),rgba(19,18,17,.84))}
+.note-card.resolved{opacity:.8}
+.notice{background:rgba(226,178,90,.1);border-color:rgba(226,178,90,.35);color:#f1d29a}
+.planner-message.error{background:rgba(208,87,75,.14);color:#ffb1a7}
+.rate-box{border-style:dashed;border-color:var(--im-line2)}
+.stock-switch button{color:var(--im-ink2)}
+.stock-switch button[aria-selected="true"]{background:var(--im-cta);color:#17120a}
+.owner-avatar,.professional-mark,.client-avatar,.workspace-user>span,.calendar-professional>span,.review-person>span,.sidebar .brand-icon{background:radial-gradient(circle at 35% 30%,#e7cf96,#9c7a43 60%,#4d3a1d);color:#17120a;font-weight:700;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+.team-monogram{background:radial-gradient(circle at 35% 30%,#5a4a32,#141210);border-color:var(--im-gold-d);color:var(--im-gold-l)}
+
+/* ---------- site público ---------- */
+#website{background:transparent!important}
+#website .ticker,.ticker{background:linear-gradient(90deg,#1a1712,#2a2318 50%,#1a1712);border-top:1px solid var(--im-line2);border-bottom:1px solid var(--im-line2);color:var(--im-gold-l)}
+#website .ticker *{color:var(--im-gold-l)}
+#website .story,#website .feedback,.story,.feedback{background:linear-gradient(180deg,rgba(255,255,255,.015),rgba(0,0,0,.25));border-top:1px solid var(--im-line);border-bottom:1px solid var(--im-line)}
+#website .story-art{background:radial-gradient(70% 70% at 50% 40%,#2a241c,#0c0b0a);border-color:var(--im-line2)}
+#website .story-copy p:not(.eyebrow),#website .location-address address,.location-social>p:not(.eyebrow),.review-invite small,.team-role,#website .service p,#website .service small{color:var(--im-ink2)}
+#website .story-copy p.story-emphasis{color:var(--im-ink)}
+#website .service-icon,.location-pin{color:var(--im-gold)}
+#website .service-price{border-color:var(--im-line)}
+#website .service-arrow{border-color:var(--im-line2);color:var(--im-gold-l)}
+#website .service.featured{background:radial-gradient(420px circle at var(--sx,50%) var(--sy,-20%),rgba(255,236,190,.14),transparent 50%),linear-gradient(155deg,rgba(92,72,42,.85),rgba(28,24,19,.9));border-color:var(--im-gold)}
+#website .featured .service-arrow{background:var(--im-cta);border-color:#e7cf96;color:#17120a}
+#website .service.featured .service-icon{color:var(--im-gold-l)}
+.service-tag,.featured-tag,#website .service .tag{background:var(--im-red)}
+.review-symbol{color:var(--im-gold)}
+.review-invite{border-color:var(--im-line)}
+#website .last-call,.last-call{background:radial-gradient(60% 120% at 85% 50%,rgba(231,207,150,.18),transparent 60%),linear-gradient(115deg,#2a2218,#15120f 60%,#201913);border:1px solid var(--im-line2);box-shadow:0 30px 70px -30px rgba(0,0,0,.9),inset 0 1px 0 rgba(255,236,200,.08)}
+#website .last-call h2,#website .last-call h2 span{color:var(--im-ink)}
+#website .last-call .eyebrow{color:var(--im-gold)!important}
+#website .last-call p:not(.eyebrow){color:var(--im-ink2)}
+#website .footer{border-top:1px solid var(--im-line)}
+#website .footer>a:not(.brand),#website .footer>span,#website .footer p small{color:var(--im-ink2)}
+.space-grid figure{border-color:var(--im-line2)!important;box-shadow:calc(var(--gx) * -10px) calc(18px - var(--gy) * 8px) 40px -18px rgba(0,0,0,.85)}
+.header nav.open{background:rgba(14,13,12,.97);border-bottom:1px solid var(--im-line)}
+
+/* ---------- login ---------- */
+.owner-login{background:transparent!important}
+.login-lock{background:rgba(201,163,101,.12);color:var(--im-gold-l);border-color:var(--im-line2)}
+.login-card h1 span,.login-description,.login-status,.login-back,.login-note,.login-footer{color:var(--im-ink2)}
+.login-card label{color:var(--im-ink)}
+.login-note{border-color:var(--im-line)}
+
+/* ---------- painel do dono ---------- */
+#dashboard{background:transparent!important}
+.sidebar,.staff-sidebar{background:linear-gradient(180deg,rgba(17,16,15,.94),rgba(10,10,11,.96));border-right:1px solid var(--im-line)}
+.sidebar-label{color:var(--im-gold)}
+.sidebar nav button,.staff-sidebar nav button{color:#cdc5b8;transition:background .2s,color .2s,transform .2s}
+.sidebar nav button:hover,.staff-sidebar nav button:hover{background:rgba(201,163,101,.08);color:#fff}
+.sidebar nav button.active,.staff-sidebar nav button.active,.staff-sidebar nav button[aria-current="page"]{background:var(--im-cta);color:#17120a;box-shadow:0 8px 20px -8px rgba(201,163,101,.5)}
+.workspace-user{border-color:var(--im-line)}
+.workspace-user small,.back-site,.owner-logout,.private-note{color:var(--im-ink2)}
+.dash-top,.staff-header{background:rgba(12,12,13,.72);border-bottom:1px solid var(--im-line);color:var(--im-ink2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.dash-main,.staff-main,.staff-area,.staff-shell{background:transparent!important}
+#month{min-height:44px}
+
+/* ---------- agenda ---------- */
+.calendar-scroll{border-color:var(--im-line);background:rgba(10,10,11,.5)}
+.calendar-column-heads{background:rgba(20,19,17,.97);border-color:var(--im-line)}
+.calendar-clock-head,.calendar-professional,.calendar-times,.calendar-lane{border-color:rgba(255,255,255,.06)}
+.calendar-times{background:rgba(16,15,14,.9)}
+.calendar-times>span{color:var(--im-ink3);border-color:rgba(255,255,255,.06)}
+.calendar-lane{background:repeating-linear-gradient(to bottom,transparent 0,transparent 59px,rgba(255,255,255,.06) 59px,rgba(255,255,255,.06) 60px)}
+.calendar-slot:not(:disabled):hover{background:rgba(201,163,101,.08)}
+.calendar-slot>span{color:var(--im-gold)}
+.calendar-event{background:linear-gradient(160deg,rgba(147,172,236,.2),rgba(147,172,236,.08));border-color:rgba(147,172,236,.32);border-left-color:#7f9be0;color:var(--im-ink);box-shadow:0 6px 16px -6px rgba(0,0,0,.7)}
+.calendar-event.completed{background:linear-gradient(160deg,rgba(124,192,141,.2),rgba(124,192,141,.07));border-color:rgba(124,192,141,.32);border-left-color:#6fb382}
+.calendar-event.pending{background:linear-gradient(160deg,rgba(226,178,90,.22),rgba(226,178,90,.08));border-color:rgba(226,178,90,.36);border-left-color:#d6a24a}
+.calendar-event.blocked{background:repeating-linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.04) 8px,rgba(255,255,255,.08) 8px,rgba(255,255,255,.08) 9px);border-color:rgba(255,255,255,.12);border-left-color:#8e877c;color:var(--im-ink2)}
+.calendar-event strong,.calendar-event b{color:var(--im-ink)}
+.calendar-event small,.calendar-event .event-origin{color:var(--im-ink2)}
+.event-meta>span{background:rgba(147,172,236,.22);color:#cfdcfb;font-weight:600}
+.completed .event-meta>span{background:rgba(124,192,141,.24);color:#b8ecc5}
+.pending .event-meta>span{background:rgba(226,178,90,.26);color:#ffd88f}
+.blocked .event-meta>span{background:rgba(255,255,255,.1);color:var(--im-ink2)}
+.calendar-list-item{border-left:4px solid #7f9be0}
+.calendar-list-item.completed{border-left-color:#6fb382}
+.calendar-list-item.blocked{border-left-color:#8e877c}
+.calendar-legend>span:before{background:#7f9be0}
+.calendar-legend .legend-completed:before{background:#6fb382}
+.calendar-legend .legend-pending:before{background:#d6a24a}
+.calendar-legend .legend-blocked:before{background:#8e877c}
+
+/* ---------- movimento: entrada de telas e de abas, revelação ao rolar, inclinação ---------- */
+@media (prefers-reduced-motion:no-preference){
+  #website,#dashboard:not([hidden]),#staff-area:not([hidden]),.owner-login:not([hidden]){animation:im-view .55s cubic-bezier(.2,.7,.2,1) both}
+  .im-swap>*{animation:im-swap .45s cubic-bezier(.2,.7,.2,1) both}
+  .im-swap>*:nth-child(2){animation-delay:.04s}.im-swap>*:nth-child(3){animation-delay:.08s}.im-swap>*:nth-child(n+4){animation-delay:.12s}
+  .im-reveal{opacity:0;translate:0 22px;transition:opacity .8s cubic-bezier(.2,.7,.2,1),translate .8s cubic-bezier(.2,.7,.2,1)}
+  .im-reveal.im-in{opacity:1;translate:0 0}
+}
+@keyframes im-view{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:none}}
+@keyframes im-swap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* paralaxe leve em elementos de destaque (independe de transform/hover) */
+.im-depth{translate:calc(var(--gx) * var(--depth,6) * -1px) calc(var(--gy) * var(--depth,6) * -.7px);transition:translate .2s linear}
+/* inclinação ao passar o mouse (somente mouse; nunca no toque) */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+  .im-tilt{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--lift,0px));transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;will-change:transform}
+  .im-tilt:hover{--lift:-4px;transition:transform .12s linear,box-shadow .3s}
+  #website .service.im-tilt:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px)}
+}
+
+/* ---------- celular: leve e legível ---------- */
+@media (max-width:899px){
+  body::before{background:radial-gradient(70% 50% at 0% 30%,rgba(120,26,18,.2),transparent 70%),radial-gradient(60% 50% at 100% 70%,rgba(40,84,90,.14),transparent 72%),linear-gradient(180deg,#0d0e10,#0a0b0c)}
+  .panel,.stat-card,.performance-card,.access-card,.shortcut,.staff-area tr{box-shadow:inset 0 1px 0 rgba(255,236,200,.05),0 10px 24px -14px rgba(0,0,0,.8)}
+  .dash-top,.staff-header{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(12,12,13,.96)}
+  .im-depth{translate:none}
+}
+@media (prefers-reduced-motion:reduce){.im-depth{translate:none}}
+@media (forced-colors:active){body::before{display:none}}
+.brand-icon{background:#1c1a17;color:var(--im-gold-l)}
+.garage-door span{background:#16140f;color:var(--im-ink)}
+
+/* ações principais sempre em evidência (alto contraste) */
+#staff-sale-top,#staff-sale,#staff-sale-2,#new-sale-top,#new-record,#new-sale,.sale-top{background:var(--im-cta)!important;color:#17120a!important;border:1px solid #e7cf96!important;font-weight:700;box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 20px -8px rgba(201,163,101,.45)}
+#action-form .qty-stepper button{background:rgba(255,255,255,.05);border:1px solid var(--im-line2);color:var(--im-ink)}
+#action-form .qty-stepper button:hover{border-color:var(--im-gold);background:rgba(201,163,101,.12)}
+
+/* ===== Área do barbeiro: só a barra de abas fica fixa; o resto rola livre (11/11) ===== */
+/* atalhos grandes só na Visão geral; nas outras abas, nada se repete no topo */
+#staff-area:not([data-tab="overview"]) .staff-shortcuts{display:none}
+#staff-area:not([data-tab="overview"]) .staff-welcome>div{display:none}
+#staff-area:not([data-tab="overview"]) .staff-welcome{justify-content:flex-end;margin-bottom:14px}
+#staff-area #staff-sale{display:none} /* "Nova venda" já está no cabeçalho */
+@media (max-width:899px){
+  .staff-shell>.staff-sidebar{display:contents}
+  .staff-sidebar>.brand{display:flex;margin:0;padding:14px 16px 10px;background:transparent}
+  .staff-sidebar>nav{position:sticky;top:0;z-index:40;margin:0;padding:8px 12px;gap:6px;background:rgba(11,11,12,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--im-line);box-shadow:0 10px 22px -16px rgba(0,0,0,.9);scrollbar-width:none;scroll-snap-type:x proximity}
+  .staff-sidebar>nav::-webkit-scrollbar{display:none}
+  .staff-sidebar>nav button{min-height:40px;padding:8px 12px;font-size:13px;border-radius:999px;scroll-snap-align:center;box-shadow:none}
+  .staff-sidebar>nav button svg{width:16px;height:16px}
+  .staff-sidebar>nav button.active{box-shadow:0 4px 12px -6px rgba(201,163,101,.6)}
+  /* cabeçalho enxuto e não fixo: Nova venda em destaque, demais ações discretas */
+  .staff-header{position:static;padding:10px 16px;background:transparent;border-bottom:0;backdrop-filter:none;-webkit-backdrop-filter:none;justify-content:flex-end}
+  .staff-header>div{display:flex;gap:8px;align-items:center}
+  .staff-header .quiet-button{min-height:38px;padding:8px 12px;font-size:12px}
+  .staff-header #staff-sale-top{padding:8px 16px}
+  /* mais respiro para o conteúdo */
+  .staff-wrap{padding:8px 16px 40px}
+  #staff-area[data-tab="overview"] .staff-welcome{margin-top:6px}
+  #staff-area .staff-shortcuts{margin:18px 0 26px}
+  #staff-area .panel{padding:18px 16px;margin-bottom:18px}
+  #staff-area .stats-grid{gap:10px;margin-bottom:18px}
+}
+/* confirmação do agendamento: lembrete e contato por WhatsApp */
+.booking-wa{display:flex;flex-direction:column;gap:10px;margin:4px 0 18px}
+.booking-wa a{justify-content:center;text-align:center;min-height:46px;display:flex;align-items:center;text-decoration:none}
+
+/* Extrato por profissional (Financeiro → card do profissional) */
+.statement-card{cursor:pointer}
+.statement-card:hover{border-color:var(--im-gold)}
+.statement-open{margin-top:10px;width:100%;justify-content:center}
+.rate-ranges{display:block;margin-top:6px;color:var(--im-ink2);font-size:12px;line-height:1.4}
+#action-dialog.wide-dialog{width:min(1100px,96vw);max-width:96vw}
+.statement h3{margin:22px 0 8px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--im-gold)!important}
+.statement-period{margin:0 0 12px;color:var(--im-ink2)}
+.statement-sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.statement-sum>div{border:1px solid var(--im-line);border-radius:10px;padding:12px 14px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:2px}
+.statement-sum span{font-size:12px;color:var(--im-ink2);text-transform:uppercase;letter-spacing:.05em}
+.statement-sum strong{font-size:22px;color:var(--im-gold-l)!important}
+.statement-rule{margin:14px 0 0;padding:10px 12px;border-left:3px solid var(--im-gold);background:rgba(201,163,101,.07);border-radius:6px;font-size:14px;line-height:1.5;color:var(--im-ink)!important}
+.statement-table td small{display:block}
+.statement-table tfoot td{font-weight:700}
+.statement [data-statement-close]{margin-top:18px}
+@media(max-width:650px){#action-dialog.wide-dialog{padding:18px 14px}.statement-sum strong{font-size:18px}.statement-table{font-size:13px}}
+
+/* Cabeçalho do site: marca centralizada na altura do cabeçalho e botão "Marcar meu horário" com texto + seta centralizados */
+#website .h2a-header .h2a-brand{top:50%;transform:translateY(-50%)}
+#website .h2a-header .header-actions{align-items:center}
+#website .h2a-cta{justify-content:center;gap:10px;white-space:nowrap}
+#website .h2a-cta span{flex:none}
+
+/* Hero: só a logo oficial no centro, em destaque (11/11 — substitui brasão, postes e ferramentas; versão antiga em docs/versoes/hero-brasao/) */
+.h2a-art.h2a-art-logo{z-index:5}
+.h2a-obj.h2a-logo{left:calc(162 * var(--u));top:calc(70 * var(--u));width:calc(340 * var(--u));height:calc(340 * var(--u));--fd:10s}
+.h2a-logo .h2a-float{position:relative;display:grid;place-items:center}
+.h2a-logo img{position:relative;z-index:2;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 22px 40px #000d) drop-shadow(0 0 18px rgba(231,207,150,.28)) saturate(1.08) contrast(1.04);animation:h2a-logo-in 1.2s cubic-bezier(.2,.8,.2,1) .15s both}
+.h2a-logo-glow{position:absolute;z-index:1;inset:-22%;border-radius:50%;pointer-events:none;background:radial-gradient(closest-side,rgba(231,207,150,.42),rgba(201,163,101,.18) 45%,rgba(201,163,101,.06) 62%,transparent 74%);animation:h2a-logo-pulse 5s ease-in-out infinite alternate}
+.h2a-logo-glow:before{content:"";position:absolute;inset:16%;border-radius:50%;border:1px solid rgba(231,207,150,.32);box-shadow:0 0 30px rgba(231,207,150,.12),inset 0 0 30px rgba(231,207,150,.08)}
+.h2a-logo-glow:after{content:"";position:absolute;inset:9%;border-radius:50%;border:1px dashed rgba(201,163,101,.22);animation:h2a-logo-spin 60s linear infinite}
+@keyframes h2a-logo-in{from{opacity:0;transform:scale(.82) translateY(14px)}to{opacity:1;transform:none}}
+@keyframes h2a-logo-pulse{from{opacity:.75;transform:scale(.97)}to{opacity:1;transform:scale(1.03)}}
+@keyframes h2a-logo-spin{to{transform:rotate(360deg)}}
+@media (max-width:899px){
+  /* celular: a logo vem primeiro, grande, antes do título */
+  .h2a-art.h2a-art-logo{order:-1;height:calc(490 * var(--u));margin:0 auto 6px}
+  .h2a-obj.h2a-logo{left:calc(55 * var(--u));top:calc(20 * var(--u));width:calc(450 * var(--u));height:calc(450 * var(--u))}
+}
+@media (prefers-reduced-motion:reduce){.h2a-logo img,.h2a-logo-glow,.h2a-logo-glow:after{animation:none}}
+
+/* Pendência de falta (agenda): aviso e opção de cobrar junto no fechamento */
+.debt-warning{margin:8px 0 0;padding:8px 10px;border-radius:8px;border:1px solid rgba(214,94,70,.45);background:rgba(214,94,70,.1);color:#f0c4b8!important;font-size:14px}
+.debt-charge{display:flex!important;flex-direction:row!important;align-items:center;gap:8px;margin:10px 0;padding:10px 12px;border:1px dashed var(--im-line);border-radius:8px;color:var(--im-ink)!important;font-size:14px}
+.debt-charge input{width:18px!important;height:18px;accent-color:var(--im-gold)}
+.calendar-event.no_show,.calendar-list-item.no_show{opacity:.55;text-decoration:line-through}

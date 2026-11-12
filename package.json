@@ -1,0 +1,22 @@
+{
+  "name": "sistema-barbearia",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "dev": "node --watch src/servidor.ts",
+    "start": "NODE_ENV=production node src/servidor.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test tests/*.test.mjs tests/*.test.ts",
+    "db:migrate": "node src/scripts/migrar.ts",
+    "db:seed": "node src/scripts/migrar.ts --seed",
+    "usuario": "node src/scripts/usuario.ts"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

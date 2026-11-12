@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Primeiro acesso · Barbearia Modelo</title>
+<link rel="icon" href="assets/logo-marca.jpg">
+<style>
+  :root { --bg:#0e0d0c; --card:#17150f; --line:#3d372d; --ink:#efe7d6; --ink2:#b9ad95; --gold:#c9a365; --gold-l:#e7cf96; --err:#e98a76; --ok:#8fd19e; }
+  * { box-sizing: border-box; }
+  body { margin:0; min-height:100vh; display:grid; place-items:center; padding:24px 16px; background:radial-gradient(ellipse at top, #2a2116 0%, var(--bg) 60%); color:var(--ink); font:16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { width:100%; max-width:420px; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:28px 24px; box-shadow:0 30px 60px #000a; }
+  .brand { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+  .brand img { width:52px; height:52px; border-radius:50%; }
+  .brand small { display:block; color:var(--gold); letter-spacing:.12em; font-size:11px; text-transform:uppercase; }
+  h1 { margin:0; font-size:22px; }
+  p { color:var(--ink2); margin:0 0 18px; font-size:14px; }
+  label { display:block; font-size:13px; color:var(--ink2); margin:14px 0 6px; }
+  input { width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line); background:#18171a; color:var(--ink); font-size:16px; }
+  input:focus { outline:2px solid var(--gold); outline-offset:1px; border-color:var(--gold); }
+  button { width:100%; margin-top:22px; padding:13px; border:0; border-radius:10px; background:linear-gradient(180deg, var(--gold-l), var(--gold)); color:#1a140b; font-weight:700; font-size:16px; cursor:pointer; }
+  button:disabled { opacity:.6; cursor:wait; }
+  .msg { margin-top:14px; font-size:14px; min-height:1.2em; }
+  .msg.err { color:var(--err); } .msg.ok { color:var(--ok); }
+  a { color:var(--gold-l); }
+  .hint { font-size:12px; color:var(--ink2); margin-top:6px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><img src="assets/logo-marca.jpg" alt=""><div><small>Barbearia Modelo</small><h1>Primeiro acesso</h1></div></div>
+  <div id="area"><p>Verificando…</p></div>
+</main>
+<script>
+  const area = document.getElementById('area');
+  const api = async (path, body) => {
+    const r = await fetch('/api/' + path, body ? { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) } : {});
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.error || 'Não foi possível concluir. Tente de novo.');
+    return d;
+  };
+  const pronto = () => { area.innerHTML = '<p>O acesso do proprietário já está criado. Entre pela <a href="/#equipe-login">Área dos barbeiros</a> e, em <strong>Equipe e acessos</strong>, crie os logins do Bruno e do Lucas.</p>'; };
+  api('setup/status').then(s => {
+    if (!s.available) return pronto();
+    area.innerHTML = `
+      <p>Crie o login do <strong>Rafael</strong> (proprietário). Esta página só funciona uma vez.</p>
+      <form id="f" autocomplete="off">
+        <label for="code">Código de primeiro acesso</label>
+        <input id="code" name="code" required autocomplete="off">
+        <div class="hint">É o valor de CODIGO_PRIMEIRO_ACESSO configurado na hospedagem.</div>
+        <label for="username">Usuário</label>
+        <input id="username" name="username" value="dono" required autocapitalize="none" spellcheck="false">
+        <label for="password">Senha (mínimo 12 caracteres)</label>
+        <input id="password" name="password" type="password" minlength="12" required autocomplete="new-password">
+        <label for="confirm">Repita a senha</label>
+        <input id="confirm" name="confirm" type="password" minlength="12" required autocomplete="new-password">
+        <button type="submit">Criar acesso do proprietário</button>
+        <div class="msg" role="alert"></div>
+      </form>`;
+    const f = document.getElementById('f'), msg = f.querySelector('.msg'), btn = f.querySelector('button');
+    f.onsubmit = async e => {
+      e.preventDefault(); msg.className = 'msg'; msg.textContent = ''; btn.disabled = true;
+      try {
+        await api('setup/owner', Object.fromEntries(new FormData(f)));
+        area.innerHTML = '<p class="msg ok">Pronto! Acesso criado.</p><p>Agora entre pela <a href="/#equipe-login">Área dos barbeiros</a> com o usuário e a senha que você escolheu.</p>';
+      } catch (err) { msg.className = 'msg err'; msg.textContent = err.message; btn.disabled = false; }
+    };
+  }).catch(() => { area.innerHTML = '<p class="msg err">Não foi possível falar com o servidor. Recarregue a página.</p>'; });
+</script>
+</body>
+</html>
